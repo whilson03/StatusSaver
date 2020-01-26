@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/whatsAppFragment">
+    <fragment
+        android:id="@+id/videosFragment"
+        android:name="com.olabode.wilson.statussaver.ui.whatsapp.videos.VideosFragment"
+        android:label="Videos"
+        tools:layout="@layout/videos_fragment" />
+    <fragment
+        android:id="@+id/imagesFragment"
+        android:name="com.olabode.wilson.statussaver.ui.whatsapp.images.ImagesFragment"
+        android:label="Images"
+        tools:layout="@layout/images_fragment" />
+    <fragment
+        android:id="@+id/whatsAppFragment"
+        android:name="com.olabode.wilson.statussaver.ui.whatsapp.WhatsAppFragment"
+        android:label="WhatsApp Statuses">
+        <action
+            android:id="@+id/action_whatsAppFragment_to_viewFragment"
+            app:destination="@id/viewFragment" />
+        <action
+            android:id="@+id/action_whatsAppFragment_to_videosViewerFragment"
+            app:destination="@id/videosViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bizwhatsAppFragment"
+        android:name="com.olabode.wilson.statussaver.ui.bizwhatsapp.BizwhatsAppFragment"
+        android:label="Biz WhatsApp">
+        <action
+            android:id="@+id/action_bizwhatsAppFragment_to_viewFragment"
+            app:destination="@id/viewFragment" />
+        <action
+            android:id="@+id/action_bizwhatsAppFragment_to_videosViewerFragment"
+            app:destination="@id/videosViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videosViewerFragment"
+        android:name="com.olabode.wilson.statussaver.ui.viewers.videosviewer.VideosViewerFragment"
+        android:label="videos_viewer_fragment"
+        tools:layout="@layout/videos_viewer_fragment">
+        <argument
+            android:name="status"
+            app:argType="com.olabode.wilson.statussaver.ui.model.Status" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagesViewerFragment"
+        android:name="com.olabode.wilson.statussaver.ui.viewers.imagesviewer.ImagesViewerFragment"
+        android:label="images_viewer_fragment"
+        tools:layout="@layout/images_viewer_fragment" />
+    <fragment
+        android:id="@+id/gbWhatsAppFragment"
+        android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.GbWhatsAppFragment"
+        android:label="GB WhatsApp"
+        tools:layout="@layout/fragment_gb_whats_app">
+        <action
+            android:id="@+id/action_gbWhatsAppFragment_to_viewFragment"
+            app:destination="@id/viewFragment" />
+        <action
+            android:id="@+id/action_gbWhatsAppFragment_to_videosViewerFragment"
+            app:destination="@id/videosViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewFragment"
+        android:name="com.olabode.wilson.statussaver.ui.viewers.ViewFragment"
+        android:label="Statuses"
+        tools:layout="@layout/fragment_viewer">
+        <argument
+            android:name="type"
+            app:argType="integer" />
+        <argument
+            android:name="statusList"
+            app:argType="com.olabode.wilson.statussaver.ui.model.Status[]" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/bizImagesFragment"
+        android:name="com.olabode.wilson.statussaver.ui.bizwhatsapp.images.BizImagesFragment"
+        android:label="BizImagesFragment" />
+    <fragment
+        android:id="@+id/bizVideosFragment"
+        android:name="com.olabode.wilson.statussaver.ui.bizwhatsapp.videos.BizVideosFragment"
+        android:label="BizVideosFragment" />
+    <fragment
+        android:id="@+id/bizSavedFragment"
+        android:name="com.olabode.wilson.statussaver.ui.bizwhatsapp.saved.BizSavedFragment"
+        android:label="biz_saved_fragment"
+        tools:layout="@layout/biz_saved_fragment" />
+    <fragment
+        android:id="@+id/gbImagesFragment"
+        android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.gbimages.GbImagesFragment"
+        android:label="GbImagesFragment" />
+    <fragment
+        android:id="@+id/gbVideosFragment"
+        android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.gbvideo.GbVideosFragment"
+        android:label="GbVideosFragment" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.olabode.wilson.statussaver.ui.whatsapp.saved.SavedFragment"
+        android:label="saved_fragment"
+        tools:layout="@layout/saved_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.olabode.wilson.statussaver.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/gbSavedFragment"
+        android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.gbsaved.GbSavedFragment"
+        android:label="gb_saved_fragment"
+        tools:layout="@layout/gb_saved_fragment" />
+</navigation>

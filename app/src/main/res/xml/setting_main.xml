@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Theme &amp; UI">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_mode"
+            android:summary="Dark mode is disabled"
+            android:title="Dark Mode" />
+
+        <CheckBoxPreference
+            android:summary="Disabled"
+            android:title="Floating Window" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About">
+        <Preference android:title="Disclaimer" />
+
+        <Preference android:title="Rate Us" />
+
+
+        <Preference android:title="Privacy Policy" />
+
+        <Preference android:title="Send Feedback" />
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
