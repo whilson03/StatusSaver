@@ -17,6 +17,7 @@
             android:title="@string/gb_whatsapp" />
 
         <item
+            android:icon="@drawable/ic_settings"
             android:id="@+id/settingsFragment"
             android:title="@string/settings" />
 
