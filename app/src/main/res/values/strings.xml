@@ -31,4 +31,7 @@
     <string name="remove_ads">Remove Ads</string>
     <string name="download">Download</string>
     <string name="repost">Repost</string>
+
+
+    <string name="authority" translatable="false">com.olabode.wilson.statussaver.fileProvider</string>
 </resources>

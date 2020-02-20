@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.olabode.wilson.statussaver.R
 import com.olabode.wilson.statussaver.databinding.VideosViewerFragmentBinding
 import com.olabode.wilson.statussaver.ui.StatusType
+import com.olabode.wilson.statussaver.ui.Utils
 import com.olabode.wilson.statussaver.ui.model.Status
 import java.io.File
 
@@ -56,6 +57,7 @@ class VideosViewerFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner, Observer {
             it?.let {
                 Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                viewModel.resetErrorMessage()
             }
 
         })
@@ -89,6 +91,14 @@ class VideosViewerFragment : Fragment() {
                 Toast.makeText(context, "Saving...", Toast.LENGTH_SHORT).show()
                 viewModel.save()
                 Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
+            }
+            R.id.repost -> {
+                val intent = Utils.openWhatsApp(context!!, status.path)
+                if (Utils.isIntentAvailable(context!!, intent)) {
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(context, "WhatsApp not installed", Toast.LENGTH_SHORT).show()
+                }
             }
 
         }

@@ -1,7 +1,11 @@
 package com.olabode.wilson.statussaver.ui
 
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Environment
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.FileProvider
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -51,6 +55,32 @@ object Utils {
             else -> WHATSAPP_SAVE_DIR
         }
     }
+
+
+    fun openWhatsApp(context: Context, path: String): Intent {
+        val uri =
+            FileProvider.getUriForFile(
+                context,
+                context.applicationContext.packageName + ".provider", File(path)
+            )
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setPackage("com.whatsapp")
+        intent.type = "image/* video/*"
+
+        intent.putExtra(Intent.EXTRA_STREAM, uri)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        return intent
+    }
+
+    fun isIntentAvailable(ctx: Context, intent: Intent): Boolean {
+        val packageManager = ctx.packageManager
+        val list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        return list.size > 0
+    }
+
+
+
+
 
 
 }
