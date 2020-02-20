@@ -79,6 +79,19 @@ object Utils {
     }
 
 
+    fun shareToOtherApp(context: Context, path: String) {
+        val uri =
+            FileProvider.getUriForFile(
+                context,
+                context.applicationContext.packageName + ".provider", File(path)
+            )
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "image/* video/*"
+
+        intent.putExtra(Intent.EXTRA_STREAM, uri)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        context.startActivity(Intent.createChooser(intent, "Share via"))
+    }
 
 
 

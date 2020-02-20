@@ -100,6 +100,9 @@ class VideosViewerFragment : Fragment() {
                     Toast.makeText(context, "WhatsApp not installed", Toast.LENGTH_SHORT).show()
                 }
             }
+            R.id.share -> {
+                Utils.shareToOtherApp(context!!, status.path)
+            }
 
         }
         return super.onOptionsItemSelected(item)
