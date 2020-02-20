@@ -4,13 +4,14 @@ import android.media.MediaPlayer.OnCompletionListener
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.MediaController
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.olabode.wilson.statussaver.R
 import com.olabode.wilson.statussaver.databinding.VideosViewerFragmentBinding
 import com.olabode.wilson.statussaver.ui.model.Status
 import java.io.File
@@ -24,6 +25,7 @@ class VideosViewerFragment : Fragment() {
 
     private lateinit var status: Status
     private lateinit var binding: VideosViewerFragmentBinding
+    private lateinit var viewModel: VideoViewerViewModel
 
 
     override fun onCreateView(
@@ -38,8 +40,22 @@ class VideosViewerFragment : Fragment() {
         binding = VideosViewerFragmentBinding.inflate(inflater)
         videoView = binding.exoPlay
 
+        setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val factory: VideoViewerFactory = VideoViewerFactory(status)
+        viewModel = ViewModelProviders.of(this, factory).get(VideoViewerViewModel::class.java)
+
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
 
@@ -57,6 +73,23 @@ class VideosViewerFragment : Fragment() {
         return Uri.fromFile(
             File(path)
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_functions, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.download -> {
+                Toast.makeText(context, "Saving...", Toast.LENGTH_SHORT).show()
+                viewModel.save()
+                Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initializePlayer() {

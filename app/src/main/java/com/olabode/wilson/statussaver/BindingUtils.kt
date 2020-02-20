@@ -26,7 +26,7 @@ fun bindImage(imgView: ImageView, path: String) {
             .load(Uri.fromFile(file))
             .apply(
                 RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .placeholder(R.drawable.ic_menu_camera)
             )
             .into(imgView)

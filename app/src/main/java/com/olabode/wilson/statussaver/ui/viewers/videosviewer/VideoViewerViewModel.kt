@@ -1,4 +1,4 @@
-package com.olabode.wilson.statussaver.ui.viewers.imagesviewer
+package com.olabode.wilson.statussaver.ui.viewers.videosviewer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,29 +9,31 @@ import com.olabode.wilson.statussaver.ui.model.Status
 import kotlinx.coroutines.*
 import java.io.FileNotFoundException
 
-class ImagesViewerViewModel(status: Status) : ViewModel() {
+/**
+ *   Created by OLABODE WILSON on 2020-02-20.
+ */
+class VideoViewerViewModel(status: Status) : ViewModel() {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private val _image = MutableLiveData<Status>()
-    val currentImage: LiveData<Status>
-        get() = _image
-
-    init {
-        _image.value = status
-    }
+    private val _video = MutableLiveData<Status>()
+    val currentVideo: LiveData<Status>
+        get() = _video
 
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?>
         get() = _error
 
+    init {
+        _video.value = status
+    }
 
     fun save() {
         uiScope.launch {
             withContext(Dispatchers.IO) {
 
                 try {
-                    Utils.saveFilestoDirectory(currentImage.value!!.path, Utils.WHATSAPP_SAVE_DIR)
+                    Utils.saveFilestoDirectory(currentVideo.value!!.path, Utils.WHATSAPP_SAVE_DIR)
                 } catch (e: FileAlreadyExistsException) {
                     _error.postValue("File Already Exist")
                     return@withContext
@@ -56,23 +58,23 @@ class ImagesViewerViewModel(status: Status) : ViewModel() {
         _error.value = null
     }
 
-
     override fun onCleared() {
         super.onCleared()
-        _image.value = null
-        resetErrorMessage()
+        _video.value = null
         viewModelJob.cancel()
+        resetErrorMessage()
     }
+
 }
 
 
-class ImageViewerFactory(
+class VideoViewerFactory(
     private val status: Status
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ImagesViewerViewModel::class.java)) {
-            return ImagesViewerViewModel(status) as T
+        if (modelClass.isAssignableFrom(VideoViewerViewModel::class.java)) {
+            return VideoViewerViewModel(status) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

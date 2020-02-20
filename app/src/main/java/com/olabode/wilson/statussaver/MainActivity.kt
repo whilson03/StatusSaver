@@ -1,7 +1,7 @@
 package com.olabode.wilson.statussaver
 
 import android.os.Bundle
-import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
@@ -48,6 +48,13 @@ class MainActivity : AppCompatActivity() {
 
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.videosViewerFragment ||
+                destination.id == R.id.viewFragment
+            ) {
+                binding.toolbar.setBackgroundColor(resources.getColor(android.R.color.black))
+            } else {
+                binding.toolbar.setBackgroundColor(resources.getColor(R.color.primaryColor))
+            }
             if (topLevelDestinations.contains(destination.id)) {
                 drawerLayout.setDrawerLockMode(
                     DrawerLayout.LOCK_MODE_UNLOCKED,
@@ -61,14 +68,17 @@ class MainActivity : AppCompatActivity() {
             }
 
 
+            when (destination.id) {
+                R.id.splashFragment -> binding.toolbar.visibility = View.GONE
+                else -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                }
+            }
+
         }
+
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
 
 
     override fun onBackPressed() {
@@ -82,5 +92,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
+
 
 }

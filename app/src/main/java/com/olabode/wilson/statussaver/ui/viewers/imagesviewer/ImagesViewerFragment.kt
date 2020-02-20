@@ -3,9 +3,8 @@ package com.olabode.wilson.statussaver.ui.viewers.imagesviewer
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -46,6 +45,7 @@ class ImagesViewerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = ImagesViewerFragmentBinding.inflate(inflater)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -68,6 +68,31 @@ class ImagesViewerFragment : Fragment() {
         })
 
 
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_functions, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.download -> {
+                Toast.makeText(context, "Saving...", Toast.LENGTH_SHORT).show()
+                viewModel.save()
+                Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

@@ -84,4 +84,6 @@ dependencies {
     //preference
     implementation 'androidx.preference:preference:1.1.0-alpha05'
 
+    //permission
+    implementation 'com.sagar:livedatapermission:2.0.1'
 }

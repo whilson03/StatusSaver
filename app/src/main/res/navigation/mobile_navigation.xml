@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/whatsAppFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/videosFragment"
         android:name="com.olabode.wilson.statussaver.ui.whatsapp.videos.VideosFragment"
@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/videosViewerFragment"
         android:name="com.olabode.wilson.statussaver.ui.viewers.videosviewer.VideosViewerFragment"
-        android:label="videos_viewer_fragment"
+        android:label="Videos"
         tools:layout="@layout/videos_viewer_fragment">
         <argument
             android:name="status"
@@ -48,7 +48,7 @@
     <fragment
         android:id="@+id/imagesViewerFragment"
         android:name="com.olabode.wilson.statussaver.ui.viewers.imagesviewer.ImagesViewerFragment"
-        android:label="images_viewer_fragment"
+        android:label="Images"
         tools:layout="@layout/images_viewer_fragment" />
     <fragment
         android:id="@+id/gbWhatsAppFragment"
@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/viewFragment"
         android:name="com.olabode.wilson.statussaver.ui.viewers.ViewFragment"
-        android:label="Statuses"
+        android:label="Images"
         tools:layout="@layout/fragment_viewer">
         <argument
             android:name="type"
@@ -88,7 +88,7 @@
     <fragment
         android:id="@+id/bizSavedFragment"
         android:name="com.olabode.wilson.statussaver.ui.bizwhatsapp.saved.BizSavedFragment"
-        android:label="biz_saved_fragment"
+        android:label="Saved"
         tools:layout="@layout/biz_saved_fragment" />
     <fragment
         android:id="@+id/gbImagesFragment"
@@ -101,7 +101,7 @@
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.olabode.wilson.statussaver.ui.whatsapp.saved.SavedFragment"
-        android:label="saved_fragment"
+        android:label="Saved"
         tools:layout="@layout/saved_fragment" />
     <fragment
         android:id="@+id/settingsFragment"
@@ -111,6 +111,17 @@
     <fragment
         android:id="@+id/gbSavedFragment"
         android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.gbsaved.GbSavedFragment"
-        android:label="gb_saved_fragment"
+        android:label="Saved"
         tools:layout="@layout/gb_saved_fragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.olabode.wilson.statussaver.ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_whatsAppFragment"
+            app:destination="@id/whatsAppFragment"
+            app:popUpTo="@+id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

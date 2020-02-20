@@ -2,9 +2,9 @@ package com.olabode.wilson.statussaver.ui
 
 import android.os.Environment
 import androidx.appcompat.app.AppCompatDelegate
-import org.apache.commons.io.FileUtils
 import java.io.File
-import java.io.IOException
+import java.io.FileNotFoundException
+
 
 /**
  *   Created by OLABODE WILSON on 2020-01-10.
@@ -16,32 +16,40 @@ object Utils {
     const val BIZWHATSAPP_DIR = "/storage/emulated/0/WhatsApp Business/Media/.Statuses/"
 
 
-    // SAVE DIR
-    const val WHATSAPP_SAVE_DIR = "/WhatsAppStatusesWT/Media/WhatsApp/"
-    const val GBWHATSAPP_SAVE_DIR = "/WhatsAppStatusesWT/Media/GBWhatsApp/"
-    const val BIZWHATSAPP_SAVE_DIR = "/WhatsAppStatusesWT/Media/BIZWhatsApp/"
+    // SAVE
+    const val BASE_SAVEPATH = "/WhatsAppStatusesWT/"
+    const val WHATSAPP_SAVE_DIR = "WhatsApp/"
+    const val GBWHATSAPP_SAVE_DIR = "GBWhatsApp/"
+    const val BIZWHATSAPP_SAVE_DIR = "BIZWhatsApp/"
 
     const val KEY_IMAGES = 0
     const val KEY_VIDEOS = 1
 
 
-    fun saveFilestoDirectory(sourcePath: String, folderName: String, fileName: String) {
+    fun saveFilestoDirectory(sourcePath: String, folderName: String) {
         val sourceFile = File(sourcePath)
         val dir = File(
             Environment.getExternalStorageDirectory()
-                .toString() + folderName + "Media"
+                .toString() + "${BASE_SAVEPATH}Media/$folderName${sourcePath.substringAfterLast('/')}"
         )
+
         try {
-            if (!dir.exists()) {
-                dir.mkdir()
-            }
-            val destination = File(dir.absolutePath + fileName)
-            FileUtils.copyFile(sourceFile, destination)
-        } catch (e: IOException) {
-            throw IOException("Error Saving")
+
+            sourceFile.copyTo(dir)
+
+        } catch (e: kotlin.io.NoSuchFileException) {
+            throw NoSuchFileException(sourceFile)
+
+        } catch (e: FileAlreadyExistsException) {
+            throw FileAlreadyExistsException(sourceFile)
+        } catch (e: FileNotFoundException) {
+            throw FileNotFoundException("File Not Found")
         }
     }
+
+
 }
+
 
 
 object ThemeHelper {
@@ -59,4 +67,5 @@ object ThemeHelper {
 
         }
     }
+
 }
