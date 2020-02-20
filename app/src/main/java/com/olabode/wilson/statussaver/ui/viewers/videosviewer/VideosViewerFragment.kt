@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.olabode.wilson.statussaver.R
 import com.olabode.wilson.statussaver.databinding.VideosViewerFragmentBinding
+import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.model.Status
 import java.io.File
 
@@ -47,7 +48,7 @@ class VideosViewerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val factory: VideoViewerFactory = VideoViewerFactory(status)
+        val factory: VideoViewerFactory = VideoViewerFactory(status, StatusType.WHATSAPP)
         viewModel = ViewModelProviders.of(this, factory).get(VideoViewerViewModel::class.java)
 
         viewModel.error.observe(viewLifecycleOwner, Observer {

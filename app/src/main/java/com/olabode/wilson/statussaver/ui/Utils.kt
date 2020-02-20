@@ -26,8 +26,9 @@ object Utils {
     const val KEY_VIDEOS = 1
 
 
-    fun saveFilestoDirectory(sourcePath: String, folderName: String) {
+    fun saveFilestoDirectory(sourcePath: String, statusType: StatusType) {
         val sourceFile = File(sourcePath)
+        val folderName = getFolderName(statusType)
         val dir = File(
             Environment.getExternalStorageDirectory()
                 .toString() + "${BASE_SAVEPATH}Media/$folderName${sourcePath.substringAfterLast('/')}"
@@ -37,7 +38,7 @@ object Utils {
 
             sourceFile.copyTo(dir)
 
-        } catch (e: kotlin.io.NoSuchFileException) {
+        } catch (e: NoSuchFileException) {
             throw NoSuchFileException(sourceFile)
 
         } catch (e: FileAlreadyExistsException) {
@@ -47,7 +48,19 @@ object Utils {
         }
     }
 
+    fun getFolderName(statusType: StatusType): String {
+        return when (statusType) {
+            StatusType.BIZ_WHATSAPP -> BIZWHATSAPP_SAVE_DIR
+            StatusType.GB_WHATSAPP -> GBWHATSAPP_SAVE_DIR
+            else -> WHATSAPP_SAVE_DIR
+        }
+    }
 
+
+}
+
+enum class StatusType {
+    WHATSAPP, BIZ_WHATSAPP, GB_WHATSAPP
 }
 
 

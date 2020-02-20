@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.olabode.wilson.statussaver.R
 import com.olabode.wilson.statussaver.databinding.ImagesViewerFragmentBinding
+import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.model.Status
 import java.io.File
 
@@ -51,7 +52,8 @@ class ImagesViewerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val factory: ImageViewerFactory = ImageViewerFactory(status)
+        //todo dynanic status type
+        val factory: ImageViewerFactory = ImageViewerFactory(status, StatusType.WHATSAPP)
         viewModel = ViewModelProviders.of(this, factory).get(ImagesViewerViewModel::class.java)
 
         viewModel.currentImage.observe(viewLifecycleOwner, Observer {

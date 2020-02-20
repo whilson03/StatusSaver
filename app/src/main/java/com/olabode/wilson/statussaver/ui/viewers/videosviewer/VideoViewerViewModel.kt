@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.Utils
 import com.olabode.wilson.statussaver.ui.model.Status
 import kotlinx.coroutines.*
@@ -12,12 +13,17 @@ import java.io.FileNotFoundException
 /**
  *   Created by OLABODE WILSON on 2020-02-20.
  */
-class VideoViewerViewModel(status: Status) : ViewModel() {
+class VideoViewerViewModel(
+    status: Status,
+    statusType: StatusType
+) : ViewModel() {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val _video = MutableLiveData<Status>()
     val currentVideo: LiveData<Status>
         get() = _video
+
+    private lateinit var _statusType: StatusType
 
 
     private val _error = MutableLiveData<String?>()
@@ -26,6 +32,7 @@ class VideoViewerViewModel(status: Status) : ViewModel() {
 
     init {
         _video.value = status
+        _statusType = statusType
     }
 
     fun save() {
@@ -33,7 +40,7 @@ class VideoViewerViewModel(status: Status) : ViewModel() {
             withContext(Dispatchers.IO) {
 
                 try {
-                    Utils.saveFilestoDirectory(currentVideo.value!!.path, Utils.WHATSAPP_SAVE_DIR)
+                    Utils.saveFilestoDirectory(currentVideo.value!!.path, StatusType.WHATSAPP)
                 } catch (e: FileAlreadyExistsException) {
                     _error.postValue("File Already Exist")
                     return@withContext
@@ -69,12 +76,12 @@ class VideoViewerViewModel(status: Status) : ViewModel() {
 
 
 class VideoViewerFactory(
-    private val status: Status
+    private val status: Status, val statusType: StatusType
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(VideoViewerViewModel::class.java)) {
-            return VideoViewerViewModel(status) as T
+            return VideoViewerViewModel(status, statusType) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
