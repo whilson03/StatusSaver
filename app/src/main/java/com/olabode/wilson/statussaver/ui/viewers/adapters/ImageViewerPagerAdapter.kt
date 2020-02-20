@@ -14,14 +14,15 @@ import com.olabode.wilson.statussaver.ui.viewers.imagesviewer.ImagesViewerFragme
 @Suppress("DEPRECATION")
 class ImageViewerPagerAdapter internal constructor(
     fm: FragmentManager,
-    private val statusList: List<Status>
+    private val statusList: List<Status>,
+    private val statusType: String
 ) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
 
         while (position < statusList.size) {
-            return ImagesViewerFragment.newInstance(statusList[position])
+            return ImagesViewerFragment.newInstance(statusList[position], statusType)
         }
         return fragment!!
     }

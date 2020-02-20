@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.olabode.wilson.statussaver.StatusClickListener
 import com.olabode.wilson.statussaver.databinding.BizImagesFragmentBinding
-import com.olabode.wilson.statussaver.ui.Utils
+import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.adapters.ImagesRecyclerAdapter
 import com.olabode.wilson.statussaver.ui.bizwhatsapp.BizwhatsAppFragmentDirections
 
@@ -45,9 +45,9 @@ class BizImagesFragment : androidx.fragment.app.Fragment() {
                             findNavController().navigate(
                                 BizwhatsAppFragmentDirections
                                     .actionBizwhatsAppFragmentToViewFragment(
-                                        Utils.KEY_IMAGES,
                                         it.toTypedArray(),
-                                        pos
+                                        pos,
+                                        StatusType.BIZ_WHATSAPP
                                     )
                             )
                         })

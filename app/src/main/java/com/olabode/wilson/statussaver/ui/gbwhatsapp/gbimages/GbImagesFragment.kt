@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.olabode.wilson.statussaver.StatusClickListener
 import com.olabode.wilson.statussaver.databinding.GbImagesFragmentBinding
-import com.olabode.wilson.statussaver.ui.Utils
+import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.adapters.ImagesRecyclerAdapter
 import com.olabode.wilson.statussaver.ui.gbwhatsapp.GbWhatsAppFragmentDirections
 
@@ -45,9 +45,9 @@ class GbImagesFragment : Fragment() {
                             this.findNavController().navigate(
                                 GbWhatsAppFragmentDirections
                                     .actionGbWhatsAppFragmentToViewFragment(
-                                        Utils.KEY_IMAGES,
                                         it.toTypedArray(),
-                                        pos
+                                        pos,
+                                        StatusType.GB_WHATSAPP
                                     )
                             )
                         })

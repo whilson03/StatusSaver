@@ -24,11 +24,13 @@ class ViewFragment : Fragment() {
     ): View? {
         val statusList: Array<Status> = ViewFragmentArgs.fromBundle(arguments!!).statusList
         val positionSelected = ViewFragmentArgs.fromBundle(arguments!!).position
+        val statusType = ViewFragmentArgs.fromBundle(arguments!!).statusType
 
         binding = FragmentViewerBinding.inflate(inflater)
 
         val viewPager = binding.viewPager
-        val adapter = ImageViewerPagerAdapter(childFragmentManager, statusList.asList())
+        val adapter =
+            ImageViewerPagerAdapter(childFragmentManager, statusList.asList(), statusType.name)
         mCurrentItem = positionSelected
         viewPager.adapter = adapter
         viewPager.currentItem = positionSelected

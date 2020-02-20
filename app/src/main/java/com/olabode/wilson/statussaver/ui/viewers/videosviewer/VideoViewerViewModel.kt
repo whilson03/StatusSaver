@@ -33,6 +33,7 @@ class VideoViewerViewModel(
     init {
         _video.value = status
         _statusType = statusType
+        println(_statusType)
     }
 
     fun save() {
@@ -40,7 +41,7 @@ class VideoViewerViewModel(
             withContext(Dispatchers.IO) {
 
                 try {
-                    Utils.saveFilestoDirectory(currentVideo.value!!.path, StatusType.WHATSAPP)
+                    Utils.saveFilestoDirectory(currentVideo.value!!.path, _statusType)
                 } catch (e: FileAlreadyExistsException) {
                     _error.postValue("File Already Exist")
                     return@withContext

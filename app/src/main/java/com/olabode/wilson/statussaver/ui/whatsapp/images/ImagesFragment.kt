@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.olabode.wilson.statussaver.StatusClickListener
 import com.olabode.wilson.statussaver.databinding.ImagesFragmentBinding
-import com.olabode.wilson.statussaver.ui.Utils
+import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.adapters.ImagesRecyclerAdapter
 import com.olabode.wilson.statussaver.ui.whatsapp.WhatsAppFragmentDirections
 
@@ -44,9 +44,9 @@ class ImagesFragment : Fragment() {
                             this.findNavController().navigate(
                                 WhatsAppFragmentDirections
                                     .actionWhatsAppFragmentToViewFragment(
-                                        Utils.KEY_IMAGES,
                                         it.toTypedArray(),
-                                        pos
+                                        pos,
+                                        StatusType.WHATSAPP
                                     )
                             )
                         })

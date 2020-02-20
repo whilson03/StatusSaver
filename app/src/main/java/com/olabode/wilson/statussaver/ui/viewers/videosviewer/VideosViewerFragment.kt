@@ -27,6 +27,7 @@ class VideosViewerFragment : Fragment() {
     private lateinit var status: Status
     private lateinit var binding: VideosViewerFragmentBinding
     private lateinit var viewModel: VideoViewerViewModel
+    private lateinit var statusType: StatusType
 
 
     override fun onCreateView(
@@ -34,6 +35,7 @@ class VideosViewerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         status = VideosViewerFragmentArgs.fromBundle(arguments!!).status
+        statusType = VideosViewerFragmentArgs.fromBundle(arguments!!).statusType
 
         if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getInt(PLAYBACK_TIME)
@@ -48,7 +50,7 @@ class VideosViewerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val factory: VideoViewerFactory = VideoViewerFactory(status, StatusType.WHATSAPP)
+        val factory: VideoViewerFactory = VideoViewerFactory(status, statusType)
         viewModel = ViewModelProviders.of(this, factory).get(VideoViewerViewModel::class.java)
 
         viewModel.error.observe(viewLifecycleOwner, Observer {

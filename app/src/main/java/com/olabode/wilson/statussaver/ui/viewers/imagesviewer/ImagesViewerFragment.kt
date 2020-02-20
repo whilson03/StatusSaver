@@ -21,9 +21,14 @@ class ImagesViewerFragment : Fragment() {
 
     companion object {
         private const val ARG_STATUS = "status"
-        fun newInstance(status: Status): ImagesViewerFragment {
-            val args: Bundle = Bundle()
+        private const val ARG_STATUS_TYPE = "status_type"
+        fun newInstance(
+            status: Status,
+            statusType: String
+        ): ImagesViewerFragment {
+            val args = Bundle()
             args.putParcelable(ARG_STATUS, status)
+            args.putString(ARG_STATUS_TYPE, statusType)
             val fragment = ImagesViewerFragment()
             fragment.arguments = args
             return fragment
@@ -35,11 +40,17 @@ class ImagesViewerFragment : Fragment() {
         arguments?.getParcelable<Status>(ARG_STATUS)?.let {
             status = it
         }
+
+        arguments?.getString(ARG_STATUS_TYPE)?.let {
+            statusType = StatusType.valueOf(it)
+        }
+
     }
 
     private lateinit var viewModel: ImagesViewerViewModel
     private lateinit var binding: ImagesViewerFragmentBinding
     private lateinit var status: Status
+    private lateinit var statusType: StatusType
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,8 +63,8 @@ class ImagesViewerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //todo dynanic status type
-        val factory: ImageViewerFactory = ImageViewerFactory(status, StatusType.WHATSAPP)
+
+        val factory: ImageViewerFactory = ImageViewerFactory(status, statusType)
         viewModel = ViewModelProviders.of(this, factory).get(ImagesViewerViewModel::class.java)
 
         viewModel.currentImage.observe(viewLifecycleOwner, Observer {

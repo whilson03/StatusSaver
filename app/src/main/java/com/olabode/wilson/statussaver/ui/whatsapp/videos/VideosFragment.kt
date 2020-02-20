@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.olabode.wilson.statussaver.StatusClickListener
 import com.olabode.wilson.statussaver.databinding.VideosFragmentBinding
+import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.adapters.VideosRecyclerAdapter
 import com.olabode.wilson.statussaver.ui.whatsapp.WhatsAppFragmentDirections
 
@@ -46,6 +47,7 @@ class VideosFragment : Fragment() {
                                 WhatsAppFragmentDirections
                                     .actionWhatsAppFragmentToVideosViewerFragment(
                                         it[pos]
+                                        , StatusType.WHATSAPP
                                     )
                             )
                         })

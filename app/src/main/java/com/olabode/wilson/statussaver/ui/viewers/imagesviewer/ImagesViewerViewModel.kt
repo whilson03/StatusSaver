@@ -24,6 +24,7 @@ class ImagesViewerViewModel(
     init {
         _image.value = status
         _statusType = statusType
+        println(_statusType)
     }
 
 
@@ -38,7 +39,7 @@ class ImagesViewerViewModel(
             withContext(Dispatchers.IO) {
 
                 try {
-                    Utils.saveFilestoDirectory(currentImage.value!!.path, StatusType.WHATSAPP)
+                    Utils.saveFilestoDirectory(currentImage.value!!.path, _statusType)
                 } catch (e: FileAlreadyExistsException) {
                     _error.postValue("File Already Exist")
                     return@withContext

@@ -44,12 +44,19 @@
         <argument
             android:name="status"
             app:argType="com.olabode.wilson.statussaver.ui.model.Status" />
+        <argument
+            android:name="statusType"
+            app:argType="com.olabode.wilson.statussaver.ui.StatusType" />
     </fragment>
     <fragment
         android:id="@+id/imagesViewerFragment"
         android:name="com.olabode.wilson.statussaver.ui.viewers.imagesviewer.ImagesViewerFragment"
         android:label="Images"
-        tools:layout="@layout/images_viewer_fragment" />
+        tools:layout="@layout/images_viewer_fragment">
+        <argument
+            android:name="statusType"
+            app:argType="com.olabode.wilson.statussaver.ui.StatusType" />
+    </fragment>
     <fragment
         android:id="@+id/gbWhatsAppFragment"
         android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.GbWhatsAppFragment"
@@ -68,14 +75,14 @@
         android:label="Images"
         tools:layout="@layout/fragment_viewer">
         <argument
-            android:name="type"
-            app:argType="integer" />
-        <argument
             android:name="statusList"
             app:argType="com.olabode.wilson.statussaver.ui.model.Status[]" />
         <argument
             android:name="position"
             app:argType="integer" />
+        <argument
+            android:name="statusType"
+            app:argType="com.olabode.wilson.statussaver.ui.StatusType" />
     </fragment>
     <fragment
         android:id="@+id/bizImagesFragment"

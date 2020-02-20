@@ -17,14 +17,10 @@ object Utils {
 
 
     // SAVE
-    const val BASE_SAVEPATH = "/WhatsAppStatusesWT/"
-    const val WHATSAPP_SAVE_DIR = "WhatsApp/"
-    const val GBWHATSAPP_SAVE_DIR = "GBWhatsApp/"
-    const val BIZWHATSAPP_SAVE_DIR = "BIZWhatsApp/"
-
-    const val KEY_IMAGES = 0
-    const val KEY_VIDEOS = 1
-
+    private const val BASE_SAVEPATH = "/WhatsAppStatusesWT/"
+    private const val WHATSAPP_SAVE_DIR = "WhatsApp/"
+    private const val GBWHATSAPP_SAVE_DIR = "GBWhatsApp/"
+    private const val BIZWHATSAPP_SAVE_DIR = "BIZWhatsApp/"
 
     fun saveFilestoDirectory(sourcePath: String, statusType: StatusType) {
         val sourceFile = File(sourcePath)
