@@ -21,7 +21,6 @@
             android:icon="@drawable/ic_star"
             android:title="Rate Us" />
 
-
         <Preference
             android:icon="@drawable/ic_security"
             android:title="Privacy Policy" />

@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.olabode.wilson.statussaver.StatusClickListener
-import com.olabode.wilson.statussaver.databinding.GbVideosFragmentBinding
+import com.olabode.wilson.statussaver.databinding.VideosFragmentBinding
 import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.adapters.VideosRecyclerAdapter
 import com.olabode.wilson.statussaver.ui.gbwhatsapp.GbWhatsAppFragmentDirections
@@ -22,14 +22,14 @@ class GbVideosFragment : Fragment() {
     }
 
     private lateinit var viewModel: GbVideosViewModel
-    private lateinit var binding: GbVideosFragmentBinding
+    private lateinit var binding: VideosFragmentBinding
     private lateinit var adapter: VideosRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = GbVideosFragmentBinding.inflate(inflater)
+        binding = VideosFragmentBinding.inflate(inflater)
         return binding.root
 
     }

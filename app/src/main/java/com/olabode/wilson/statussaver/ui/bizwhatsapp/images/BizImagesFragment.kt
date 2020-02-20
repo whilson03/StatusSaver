@@ -8,7 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.olabode.wilson.statussaver.StatusClickListener
-import com.olabode.wilson.statussaver.databinding.BizImagesFragmentBinding
+import com.olabode.wilson.statussaver.databinding.ImagesFragmentBinding
+
 import com.olabode.wilson.statussaver.ui.StatusType
 import com.olabode.wilson.statussaver.ui.adapters.ImagesRecyclerAdapter
 import com.olabode.wilson.statussaver.ui.bizwhatsapp.BizwhatsAppFragmentDirections
@@ -20,14 +21,14 @@ class BizImagesFragment : androidx.fragment.app.Fragment() {
     }
 
     private lateinit var viewModel: BizImagesViewModel
-    private lateinit var binding: BizImagesFragmentBinding
+    private lateinit var binding: ImagesFragmentBinding
     private lateinit var adapter: ImagesRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = BizImagesFragmentBinding.inflate(inflater)
+        binding = ImagesFragmentBinding.inflate(inflater)
         return binding.root
     }
 
