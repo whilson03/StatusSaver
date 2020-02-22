@@ -93,11 +93,6 @@
         android:name="com.olabode.wilson.statussaver.ui.bizwhatsapp.videos.BizVideosFragment"
         android:label="BizVideosFragment" />
     <fragment
-        android:id="@+id/bizSavedFragment"
-        android:name="com.olabode.wilson.statussaver.ui.bizwhatsapp.saved.BizSavedFragment"
-        android:label="Saved"
-        tools:layout="@layout/biz_saved_fragment" />
-    <fragment
         android:id="@+id/gbImagesFragment"
         android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.gbimages.GbImagesFragment"
         android:label="GbImagesFragment" />
@@ -115,11 +110,6 @@
         android:name="com.olabode.wilson.statussaver.ui.settings.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/gbSavedFragment"
-        android:name="com.olabode.wilson.statussaver.ui.gbwhatsapp.gbsaved.GbSavedFragment"
-        android:label="Saved"
-        tools:layout="@layout/gb_saved_fragment" />
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.olabode.wilson.statussaver.ui.SplashFragment"

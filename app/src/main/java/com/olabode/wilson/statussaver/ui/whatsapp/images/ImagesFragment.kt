@@ -53,8 +53,10 @@ class ImagesFragment : Fragment() {
                 binding.imagesRecycler.adapter = adapter
                 adapter.submitList(it)
 
+
             }
         })
     }
+
 
 }
