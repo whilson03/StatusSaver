@@ -20,12 +20,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(
             this,
             R.layout.activity_main
         )
+
 
         drawerLayout = binding.drawerLayout
         navController = Navigation.findNavController(this, R.id.navHostFragment)

@@ -13,9 +13,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.olabode.wilson.statussaver.R
 import com.olabode.wilson.statussaver.databinding.ImagesViewerFragmentBinding
-import com.olabode.wilson.statussaver.ui.StatusType
-import com.olabode.wilson.statussaver.ui.Utils
-import com.olabode.wilson.statussaver.ui.model.Status
+import com.olabode.wilson.statussaver.model.Status
+import com.olabode.wilson.statussaver.utils.StatusType
+import com.olabode.wilson.statussaver.utils.Utils
 import java.io.File
 
 class ImagesViewerFragment : Fragment() {

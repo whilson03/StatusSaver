@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.olabode.wilson.statussaver.databinding.FragmentViewerBinding
-import com.olabode.wilson.statussaver.ui.model.Status
+import com.olabode.wilson.statussaver.model.Status
 import com.olabode.wilson.statussaver.ui.viewers.adapters.ImageViewerPagerAdapter
 
 /**f

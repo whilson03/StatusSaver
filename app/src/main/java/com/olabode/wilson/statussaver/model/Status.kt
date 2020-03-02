@@ -1,4 +1,4 @@
-package com.olabode.wilson.statussaver.ui.model
+package com.olabode.wilson.statussaver.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

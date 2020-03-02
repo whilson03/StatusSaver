@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.olabode.wilson.statussaver.ui.whatsapp.images.ImagesViewModel" />
+            type="com.olabode.wilson.statussaver.ui.gbwhatsapp.gbimages.GbImagesViewModel" />
     </data>
 
 
@@ -17,13 +17,12 @@
         tools:context=".ui.whatsapp.images.ImagesFragment">
 
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/images_recycler"
             android:layout_width="match_parent"
-            app:listImages="@{viewModel.listImages}"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:listImages="@{viewModel.listImages}"
             app:spanCount="3"
             tools:itemCount="20"
             tools:listitem="@layout/item_images" />

@@ -1,4 +1,4 @@
-package com.olabode.wilson.statussaver
+package com.olabode.wilson.statussaver.utils
 
 import androidx.core.content.FileProvider
 

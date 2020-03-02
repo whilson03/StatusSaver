@@ -4,70 +4,64 @@ package com.olabode.wilson.statussaver.ui.adapters
  *   Created by OLABODE WILSON on 2020-02-20.
  */
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.olabode.wilson.statussaver.StatusClickListener
-import com.olabode.wilson.statussaver.databinding.ItemImagesBinding
-import com.olabode.wilson.statussaver.ui.model.Status
+import com.olabode.wilson.statussaver.model.Status
+import com.olabode.wilson.statussaver.ui.adapters.callbacks.UriDiffCallBack
+import com.olabode.wilson.statussaver.ui.adapters.listeners.StatusClickListener
+import com.olabode.wilson.statussaver.ui.adapters.viewholders.ImageViewHolder
+import com.olabode.wilson.statussaver.ui.adapters.viewholders.VideoViewHolder
 
 /**
  *   Created by OLABODE WILSON on 2020-01-10.
  */
 class SavedRecyclerAdapter(val clickListener: StatusClickListener) :
-    ListAdapter<Status, SavedRecyclerAdapter.viewHolder>(
+    ListAdapter<Status, RecyclerView.ViewHolder>(
         UriDiffCallBack()
     ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        return viewHolder.from(
-            parent
-        )
-    }
+    private val ITEM_TYPE_IMAGE = 0
+    private val ITEM_TYPE_VIDEO = 1
 
-
-    override fun onBindViewHolder(holder: viewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item!!, clickListener, position)
-    }
-
-    // binding.root is the root view of the layout, in this case the constraint layout
-    class viewHolder private constructor(val binding: ItemImagesBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: Status, clickListener: StatusClickListener, position: Int) {
-            binding.uriHolder = item
-            binding.pos = position
-            binding.clickListener = clickListener
-            binding.executePendingBindings()
-        }
-
-        companion object {
-            fun from(parent: ViewGroup): viewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemImagesBinding.inflate(
-                    layoutInflater
-                    , parent, false
+        when (item.path.endsWith(".jpg")) {
+            true -> {
+                (holder as ImageViewHolder).bind(
+                    item!!,
+                    clickListener,
+                    position
                 )
-                return viewHolder(
-                    binding
+            }
+            else -> {
+                (holder as VideoViewHolder).bind(
+                    item!!,
+                    clickListener,
+                    position
                 )
             }
         }
-
     }
 
-
-    class UriDiffCallBack : DiffUtil.ItemCallback<Status>() {
-        override fun areItemsTheSame(oldItem: Status, newItem: Status): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Status, newItem: Status): Boolean {
-            return oldItem == newItem
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            ITEM_TYPE_IMAGE -> {
+                ImageViewHolder.from(parent)
+            }
+            else -> {
+                VideoViewHolder.from(parent)
+            }
         }
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position).path.endsWith(".jpg")) {
+            true -> ITEM_TYPE_IMAGE
+            else -> ITEM_TYPE_VIDEO
+
+        }
+    }
+
 
 }

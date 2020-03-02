@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.olabode.wilson.statussaver.ui.StatusType
-import com.olabode.wilson.statussaver.ui.Utils
-import com.olabode.wilson.statussaver.ui.model.Status
+import com.olabode.wilson.statussaver.model.Status
+import com.olabode.wilson.statussaver.utils.StatusType
+import com.olabode.wilson.statussaver.utils.Utils
 import kotlinx.coroutines.*
 import java.io.FileNotFoundException
 

@@ -5,11 +5,11 @@
 
         <variable
             name="clickListener"
-            type="com.olabode.wilson.statussaver.StatusClickListener" />
+            type="com.olabode.wilson.statussaver.ui.adapters.listeners.StatusClickListener" />
 
         <variable
-            name="uriHolder"
-            type="com.olabode.wilson.statussaver.ui.model.Status" />
+            name="status"
+            type="com.olabode.wilson.statussaver.model.Status" />
 
         <variable
             name="pos"
@@ -22,9 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:background="@drawable/select"
         android:elevation="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -34,7 +36,7 @@
                 android:layout_height="150dp"
                 android:onClick="@{() -> clickListener.onClick(pos)}"
                 android:scaleType="centerCrop"
-                app:image="@{uriHolder.path}"
+                app:image="@{status.path}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -3,7 +3,7 @@ package com.olabode.wilson.statussaver.ui.viewers.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.olabode.wilson.statussaver.ui.model.Status
+import com.olabode.wilson.statussaver.model.Status
 import com.olabode.wilson.statussaver.ui.viewers.imagesviewer.ImagesViewerFragment
 
 /**

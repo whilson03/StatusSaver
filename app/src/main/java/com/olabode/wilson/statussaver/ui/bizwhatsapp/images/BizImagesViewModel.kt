@@ -4,8 +4,8 @@ import android.os.Environment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.olabode.wilson.statussaver.ui.Utils
-import com.olabode.wilson.statussaver.ui.model.Status
+import com.olabode.wilson.statussaver.model.Status
+import com.olabode.wilson.statussaver.utils.Utils
 import kotlinx.coroutines.*
 import java.io.File
 

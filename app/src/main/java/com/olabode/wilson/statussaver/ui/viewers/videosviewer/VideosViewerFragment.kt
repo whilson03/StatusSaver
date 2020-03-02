@@ -13,9 +13,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.olabode.wilson.statussaver.R
 import com.olabode.wilson.statussaver.databinding.VideosViewerFragmentBinding
-import com.olabode.wilson.statussaver.ui.StatusType
-import com.olabode.wilson.statussaver.ui.Utils
-import com.olabode.wilson.statussaver.ui.model.Status
+import com.olabode.wilson.statussaver.model.Status
+import com.olabode.wilson.statussaver.utils.StatusType
+import com.olabode.wilson.statussaver.utils.Utils
 import java.io.File
 
 

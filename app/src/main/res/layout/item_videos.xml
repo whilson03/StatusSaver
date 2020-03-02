@@ -7,12 +7,12 @@
 
         <variable
             name="clickListener"
-            type="com.olabode.wilson.statussaver.StatusClickListener" />
+            type="com.olabode.wilson.statussaver.ui.adapters.listeners.StatusClickListener" />
 
 
         <variable
-            name="uriHolder"
-            type="com.olabode.wilson.statussaver.ui.model.Status" />
+            name="status"
+            type="com.olabode.wilson.statussaver.model.Status" />
 
         <variable
             name="pos"
@@ -40,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:video="@{uriHolder.path}" />
+                app:video="@{status.path}" />
 
             <ImageView
                 android:id="@+id/imageView2"

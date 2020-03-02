@@ -1,4 +1,4 @@
-package com.olabode.wilson.statussaver.ui
+package com.olabode.wilson.statussaver.utils
 
 import android.content.Context
 import android.content.Intent
@@ -28,7 +28,8 @@ object Utils {
 
     fun saveFilestoDirectory(sourcePath: String, statusType: StatusType) {
         val sourceFile = File(sourcePath)
-        val folderName = getFolderName(statusType)
+        val folderName =
+            getFolderName(statusType)
         val dir = File(
             Environment.getExternalStorageDirectory()
                 .toString() + "${BASE_SAVEPATH}Media/$folderName${sourcePath.substringAfterLast('/')}"
@@ -96,10 +97,6 @@ object Utils {
 
 
 
-}
-
-enum class StatusType {
-    WHATSAPP, BIZ_WHATSAPP, GB_WHATSAPP
 }
 
 
